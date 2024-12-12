@@ -1,5 +1,6 @@
-import 'package:bookit_flutter_project/view/dashboardView.dart';
-import 'package:bookit_flutter_project/view/loginView.dart';
+// import 'package:bookit_flutter_project/view/dashboard_view.dart';
+import 'package:bookit_flutter_project/authorization/login_view.dart';
+import 'package:bookit_flutter_project/authorization/register_view.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,9 +8,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:DashboardView(),
+      home: RegisterView(),
     );
   }
 }
