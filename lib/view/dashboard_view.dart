@@ -7,6 +7,7 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
+      backgroundColor: Colors.blueAccent,
       body: const Center(
         child: Text(
           'Welcome to the Dashboard!',
