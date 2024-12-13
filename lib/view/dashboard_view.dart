@@ -9,7 +9,7 @@ class DashboardView extends StatelessWidget {
       appBar: AppBar(title: const Text('Dashboard')),
       body: const Center(
         child: Text(
-          'Welcome to the Dashboard!',
+          'Welcome',
           style: TextStyle(fontSize: 24),
         ),
       ),
