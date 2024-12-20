@@ -86,5 +86,17 @@ flutter:
       fonts:
         - asset: assets\fonts\Montserrat-Italic.ttf
 
+    - family: WorkSans Bold
+      fonts:
+        - asset: assets\fonts\WorkSans-Bold.ttf
+
+    - family: WorkSans Semi Bold
+      fonts:
+        - asset: assets\fonts\WorkSans-SemiBold.ttf
+
+    - family: WorkSans Regualar
+      fonts:
+        - asset: assets\fonts\WorkSans-Regular.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

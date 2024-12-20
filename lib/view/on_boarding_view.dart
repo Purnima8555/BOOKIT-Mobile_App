@@ -98,6 +98,9 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final bool isTablet = screenWidth > 600;
+
     Color titleColor = Color(0xFF1E2751); // #1E2751 color
 
     return Column(
@@ -116,7 +119,9 @@ class OnboardingPage extends StatelessWidget {
         Expanded(
           flex: 4,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: isTablet ? 40.0 : 20.0,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -124,17 +129,17 @@ class OnboardingPage extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: isTablet ? 32 : 28,
                     fontWeight: FontWeight.bold,
                     color: titleColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: isTablet ? 30 : 20),
                 Text(
                   subtitle,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: isTablet ? 20 : 18,
                     fontWeight: FontWeight.w600,
                     color: Colors.black54,
                   ),
@@ -143,14 +148,16 @@ class OnboardingPage extends StatelessWidget {
                 Spacer(),
                 if (!isLastPage)
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: isTablet
+                        ? MainAxisAlignment.spaceEvenly
+                        : MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(
                         onPressed: onSkip,
                         child: Text(
                           'Skip',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: isTablet ? 22 : 20,
                             color: titleColor,
                             decoration: TextDecoration.underline,
                           ),
@@ -160,8 +167,8 @@ class OnboardingPage extends StatelessWidget {
                         onPressed: onNext,
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 15,
+                            horizontal: isTablet ? 40 : 30,
+                            vertical: isTablet ? 20 : 15,
                           ),
                           backgroundColor: titleColor,
                           elevation: 5,
@@ -169,7 +176,7 @@ class OnboardingPage extends StatelessWidget {
                         child: Text(
                           "Next",
                           style: TextStyle(
-                            fontSize: 19,
+                            fontSize: isTablet ? 21 : 19,
                             color: Colors.white,
                           ),
                         ),
@@ -177,14 +184,13 @@ class OnboardingPage extends StatelessWidget {
                     ],
                   ),
                 if (isLastPage)
-                  Align(
-                    alignment: Alignment.bottomRight,
+                  Center(
                     child: ElevatedButton(
                       onPressed: onGetStarted,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 15,
+                          horizontal: isTablet ? 40 : 30,
+                          vertical: isTablet ? 20 : 15,
                         ),
                         backgroundColor: titleColor,
                         elevation: 5,
@@ -192,13 +198,13 @@ class OnboardingPage extends StatelessWidget {
                       child: Text(
                         "Get Started",
                         style: TextStyle(
-                          fontSize: 19,
+                          fontSize: isTablet ? 21 : 19,
                           color: Colors.white,
                         ),
                       ),
                     ),
                   ),
-                SizedBox(height: 10),
+                SizedBox(height: isTablet ? 20 : 10),
               ],
             ),
           ),

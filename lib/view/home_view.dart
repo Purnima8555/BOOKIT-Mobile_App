@@ -58,46 +58,56 @@ class _HomeViewState extends State<HomeView> {
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        SizedBox(
-          height: 100,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.blue[100],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.book,
-                          size: 30,
-                          color: Colors.blue[900],
+        LayoutBuilder(
+          builder: (context, constraints) {
+            // Increase category width further for large screens (tablets)
+            double categoryWidth = constraints.maxWidth > 800
+                ? 200
+                : constraints.maxWidth > 600
+                    ? 150
+                    : 100;
+            return SizedBox(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: categoryWidth,
+                        decoration: BoxDecoration(
+                          color: Colors.blue[100],
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        const SizedBox(height: 5),
-                        Text(
-                          'Category ${index + 1}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.book,
+                              size: 30,
+                              color: Colors.blue[900],
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              'Category ${index + 1}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              );
-            },
-          ),
+                  );
+                },
+              ),
+            );
+          },
         ),
       ],
     );
@@ -117,7 +127,7 @@ class _HomeViewState extends State<HomeView> {
           height: 210,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: 10,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -213,7 +223,7 @@ class _HomeViewState extends State<HomeView> {
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
+              itemCount: 10,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -333,7 +343,6 @@ class _HomeViewState extends State<HomeView> {
                           child: Image.asset(
                             'assets/images/thegreatgatsby.jpg',
                             fit: BoxFit.cover,
-                            height: 160,
                           ),
                         ),
                       ),
@@ -362,16 +371,15 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'The Catcher In The Rye',
+                    'Book Title',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 1,
                   ),
                   const Text(
-                    'J.D. Salinger',
+                    'Author Name',
                     style: TextStyle(fontSize: 10, color: Colors.grey),
                   ),
                 ],
