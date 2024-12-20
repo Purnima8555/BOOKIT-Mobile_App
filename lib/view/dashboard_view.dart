@@ -17,7 +17,7 @@ class _DashboardViewState extends State<DashboardView> {
   final List<Widget> _pages = [
     const HomeView(),
     const ExploreView(),
-    const SavedView(),
+    SavedView(),
     const ProfileView(),
   ];
 
