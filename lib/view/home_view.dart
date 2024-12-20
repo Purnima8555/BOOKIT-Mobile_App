@@ -140,7 +140,7 @@ class _HomeViewState extends State<HomeView> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
-                              'assets/images/thecatcherintherye.jpg',
+                              'assets/images/tokillamockingbird.jpg',
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -331,7 +331,7 @@ class _HomeViewState extends State<HomeView> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.asset(
-                            'assets/images/thecatcherintherye.jpg',
+                            'assets/images/thegreatgatsby.jpg',
                             fit: BoxFit.cover,
                             height: 160,
                           ),
