@@ -39,7 +39,6 @@ class LoginView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 // CircleAvatar with border
                 Container(
                   width: 160,
@@ -47,7 +46,7 @@ class LoginView extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Theme.of(context).primaryColor,
                       width: 4.0,
                     ),
                   ),
@@ -72,28 +71,14 @@ class LoginView extends StatelessWidget {
                 // Username field
                 TextFormField(
                   controller: _usernameController,
-                  style: const TextStyle(
-                    fontFamily: 'WorkSansSemiBold',
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 19),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: InputBorder.none,
                     prefixIcon: const Icon(
                       Icons.account_circle,
                       color: Colors.black,
                       size: 22.0,
                     ),
                     hintText: 'Username',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                   ),
                 ),
                 const SizedBox(height: 17),
@@ -105,28 +90,14 @@ class LoginView extends StatelessWidget {
                     return TextFormField(
                       obscureText: obscureText,
                       controller: _passwordController,
-                      style: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold',
-                        fontSize: 15.0,
-                        color: Colors.black,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 19),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
                         prefixIcon: const Icon(
                           Icons.lock,
                           size: 22.0,
                           color: Colors.black,
                         ),
                         hintText: 'Password',
-                        hintStyle: const TextStyle(
-                            fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             _obscureTextPassword.value =
@@ -159,7 +130,7 @@ class LoginView extends StatelessWidget {
                         "Forgot Password?",
                         style: TextStyle(
                           fontSize: 12,
-                          color: Color.fromARGB(255, 4, 49, 85),
+                          color: Color(0xFF043155),
                           decoration: TextDecoration.underline,
                         ),
                       ),
@@ -172,25 +143,8 @@ class LoginView extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFF1E2751),
-                      ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Color(0xFF1E2751)),
-                        ),
-                      ),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(vertical: 20),
-                      ),
-                    ),
                     onPressed: () => _login(context),
-                    child: const Text(
-                      "Log In",
-                      style: TextStyle(fontSize: 20),
-                    ),
+                    child: const Text("Log In", style: TextStyle(fontSize: 20)),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -207,15 +161,13 @@ class LoginView extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  RegisterView()), // Navigate to RegisterView
+                          MaterialPageRoute(builder: (context) => RegisterView()),
                         );
                       },
                       child: const Text(
                         "SignUp",
                         style: TextStyle(
-                          color: Color.fromARGB(255, 4, 49, 85),
+                          color: Color(0xFF043155),
                           decoration: TextDecoration.underline,
                         ),
                       ),

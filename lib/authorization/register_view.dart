@@ -32,7 +32,8 @@ class RegisterView extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color:
+                          Theme.of(context).primaryColor,
                       width: 4.0,
                     ),
                   ),
@@ -57,28 +58,16 @@ class RegisterView extends StatelessWidget {
                 // Full Name field
                 TextFormField(
                   controller: _nameController,
-                  style: const TextStyle(
-                    fontFamily: 'WorkSansSemiBold',
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 19),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: InputBorder.none,
-                    prefixIcon: const Icon(
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(
                       Icons.person,
                       color: Colors.black,
                       size: 22.0,
                     ),
                     hintText: 'Full Name',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                   ),
                 ),
                 const SizedBox(height: 17),
@@ -86,28 +75,16 @@ class RegisterView extends StatelessWidget {
                 // Username field
                 TextFormField(
                   controller: _usernameController,
-                  style: const TextStyle(
-                    fontFamily: 'WorkSansSemiBold',
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 19),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: InputBorder.none,
-                    prefixIcon: const Icon(
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(
                       Icons.account_circle,
                       color: Colors.black,
                       size: 22.0,
                     ),
                     hintText: 'Username',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                   ),
                 ),
                 const SizedBox(height: 17),
@@ -115,28 +92,16 @@ class RegisterView extends StatelessWidget {
                 // Contact Number field
                 TextFormField(
                   controller: _contactNoController,
-                  style: const TextStyle(
-                    fontFamily: 'WorkSansSemiBold',
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 19),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: InputBorder.none,
-                    prefixIcon: const Icon(
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(
                       Icons.phone,
                       color: Colors.black,
                       size: 22.0,
                     ),
                     hintText: 'Contact Number',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                   ),
                 ),
                 const SizedBox(height: 17),
@@ -144,28 +109,16 @@ class RegisterView extends StatelessWidget {
                 // Email field
                 TextFormField(
                   controller: _emailController,
-                  style: const TextStyle(
-                    fontFamily: 'WorkSansSemiBold',
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 19),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: InputBorder.none,
-                    prefixIcon: const Icon(
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(
                       Icons.email,
                       color: Colors.black,
                       size: 22.0,
                     ),
                     hintText: 'Email',
-                    hintStyle: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                   ),
                 ),
                 const SizedBox(height: 17),
@@ -177,28 +130,16 @@ class RegisterView extends StatelessWidget {
                     return TextFormField(
                       obscureText: obscureText,
                       controller: _passwordController,
-                      style: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold',
-                        fontSize: 15.0,
-                        color: Colors.black,
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium,
                       decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 19),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
                         prefixIcon: const Icon(
                           Icons.lock,
                           size: 22.0,
                           color: Colors.black,
                         ),
                         hintText: 'Password',
-                        hintStyle: const TextStyle(
-                            fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             _obscureTextPassword.value =
@@ -225,28 +166,16 @@ class RegisterView extends StatelessWidget {
                     return TextFormField(
                       obscureText: obscureText,
                       controller: _confirmPasswordController,
-                      style: const TextStyle(
-                        fontFamily: 'WorkSansSemiBold',
-                        fontSize: 15.0,
-                        color: Colors.black,
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium,
                       decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 19),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
                         prefixIcon: const Icon(
                           Icons.lock,
                           size: 22.0,
                           color: Colors.black,
                         ),
                         hintText: 'Confirm Password',
-                        hintStyle: const TextStyle(
-                            fontFamily: 'WorkSansSemiBold', fontSize: 15.0),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             _obscureTextConfirmPassword.value =
@@ -264,48 +193,31 @@ class RegisterView extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 17),
 
                 // Register button
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFF1E2751),
-                      ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Color(0xFF1E2751)),
-                        ),
-                      ),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(vertical: 20),
-                      ),
-                    ),
                     onPressed: () {
-                      // Add registration logic
+                      // Handle registration logic here
                     },
-                    child: const Text(
-                      "Register",
-                      style: TextStyle(fontSize: 16),
-                    ),
+                    child:
+                        const Text("Register", style: TextStyle(fontSize: 20)),
                   ),
                 ),
                 const SizedBox(height: 16),
 
-                // Log in link
+                // Login link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Already have an account?",
-                      style: TextStyle(color: Colors.grey.shade800),
+                      style: TextStyle(color: Colors.grey),
                     ),
                     InkWell(
                       onTap: () {
-                        // Navigate to the LoginView page
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => LoginView()),
@@ -314,7 +226,7 @@ class RegisterView extends StatelessWidget {
                       child: const Text(
                         "SignIn",
                         style: TextStyle(
-                          color: Color.fromARGB(255, 4, 49, 85),
+                          color: Color(0xFF043155),
                           decoration: TextDecoration.underline,
                         ),
                       ),
