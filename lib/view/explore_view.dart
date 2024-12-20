@@ -68,6 +68,8 @@ class _ExploreViewState extends State<ExploreView> {
   Widget _buildBrowseBySeriesBox() {
     return _buildCustomBox(
       label: 'Browse by Series',
+      imagePath:
+          'assets/images/thecatcherintherye.jpg',
     );
   }
 
@@ -75,6 +77,8 @@ class _ExploreViewState extends State<ExploreView> {
   Widget _buildTop10SellingBox() {
     return _buildCustomBox(
       label: 'Top 10 Selling',
+      imagePath:
+          'assets/images/thegreatgatsby.jpg',
     );
   }
 
@@ -82,17 +86,23 @@ class _ExploreViewState extends State<ExploreView> {
   Widget _buildTop10RentalsBox() {
     return _buildCustomBox(
       label: 'Top 10 Rentals',
+      imagePath:
+          'assets/images/tokillamockingbird.jpg',
     );
   }
 
-  // General function to build a custom box
-  Widget _buildCustomBox({required String label}) {
+  // General function to build a custom box with image and label
+  Widget _buildCustomBox({required String label, required String imagePath}) {
     return Stack(
       children: [
         Container(
           decoration: BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.circular(8.0),
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         // Label
@@ -137,7 +147,6 @@ class _ExploreViewState extends State<ExploreView> {
       itemBuilder: (context, index) {
         return Stack(
           children: [
-
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey,
