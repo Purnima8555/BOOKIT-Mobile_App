@@ -11,7 +11,10 @@ class _SavedViewState extends State<SavedView> {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Saved Page'),
+      child: Text(
+        'Saved Page',
+        style: TextStyle(fontFamily: 'Montserrat Bold', fontSize: 20),
+      ),
     );
   }
 }
