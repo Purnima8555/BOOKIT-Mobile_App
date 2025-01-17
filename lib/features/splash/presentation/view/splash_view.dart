@@ -13,7 +13,6 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    // Delay the splash screen for 3 seconds
     Future.delayed(const Duration(seconds: 3), () {
       // You can navigate to your next screen here after 3 seconds.
       // For example: Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));

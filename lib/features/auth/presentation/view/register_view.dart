@@ -20,10 +20,16 @@ class _RegisterViewState extends State<RegisterView> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  InputDecoration _inputDecoration(String label, IconData icon) {
+  final _obscureTextPassword =
+      ValueNotifier<bool>(true);
+  final _obscureTextConfirmPassword =
+      ValueNotifier<bool>(true);
+
+  InputDecoration _inputDecoration(String label, IconData icon,
+      {Widget? suffixIcon}) {
     return InputDecoration(
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20), // Rounded corners
+        borderRadius: BorderRadius.circular(20),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Colors.grey),
@@ -31,22 +37,24 @@ class _RegisterViewState extends State<RegisterView> {
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
-          color: Color(0xFF043155), // Custom focus color
+          color: Color(0xFF043155),
           width: 2,
         ),
         borderRadius: BorderRadius.circular(20),
       ),
       labelText: label,
       labelStyle: const TextStyle(
-        fontWeight: FontWeight.bold, // Increased font weight
-        fontSize: 16, // Slightly larger font size
-        color: Colors.black54, // Default label color
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+        color: Colors.black54,
       ),
       prefixIcon: Icon(
         icon,
         size: 22.0,
         color: Colors.black,
       ),
+      suffixIcon:
+          suffixIcon,
     );
   }
 
@@ -61,16 +69,15 @@ class _RegisterViewState extends State<RegisterView> {
               key: _key,
               child: Column(
                 children: [
-                  // Registration Title
                   const Align(
-                    alignment: Alignment.topCenter, // Center the title
+                    alignment: Alignment.topCenter,
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Registration',
                         style: TextStyle(
-                          fontSize: 38, // Increased font size
-                          fontWeight: FontWeight.bold, // Increased font weight
+                          fontSize: 38,
+                          fontWeight: FontWeight.bold,
                           fontFamily: 'Brand Bold',
                           color: Color(0xFF1E2751),
                         ),
@@ -78,7 +85,6 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                   const SizedBox(height: 7),
-                  // Profile Image Section (optional image upload)
                   InkWell(
                     onTap: () {
                       showModalBottomSheet(
@@ -102,28 +108,22 @@ class _RegisterViewState extends State<RegisterView> {
                                 },
                                 icon: const Icon(
                                   Icons.camera,
-                                  color: Colors
-                                      .white, // Set the icon color to white
+                                  color: Colors.white,
                                 ),
                                 label: const Text(
                                   'Camera',
-                                  style: TextStyle(
-                                      color: Colors
-                                          .white), // Set the text color to white
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
                               ElevatedButton.icon(
                                 onPressed: () {},
                                 icon: const Icon(
                                   Icons.image,
-                                  color: Colors
-                                      .white, // Set the icon color to white
+                                  color: Colors.white,
                                 ),
                                 label: const Text(
                                   'Gallery',
-                                  style: TextStyle(
-                                      color: Colors
-                                          .white), // Set the text color to white
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
                             ],
@@ -132,10 +132,10 @@ class _RegisterViewState extends State<RegisterView> {
                       );
                     },
                     child: const SizedBox(
-                      height: 150, // Reduced the size of the circle
+                      height: 150,
                       width: 150,
                       child: CircleAvatar(
-                        radius: 40, // Reduced the radius of the circle
+                        radius: 40,
                         backgroundImage: AssetImage('assets/images/logo.png'),
                       ),
                     ),
@@ -149,7 +149,8 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  // Full Name Field
+
+                  // Full name
                   TextFormField(
                     controller: _fullNameController,
                     decoration: _inputDecoration('Full Name', Icons.person),
@@ -161,7 +162,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   _gap,
-                  // Username Field
+
+                  // Username
                   TextFormField(
                     controller: _usernameController,
                     decoration: _inputDecoration('Username', Icons.person),
@@ -173,7 +175,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   _gap,
-                  // Phone Number Field
+
+                  // Phone No
                   TextFormField(
                     controller: _phoneController,
                     decoration: _inputDecoration('Phone No', Icons.phone),
@@ -185,7 +188,8 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   _gap,
-                  // Email Field
+
+                  // Email
                   TextFormField(
                     controller: _emailController,
                     decoration: _inputDecoration('Email', Icons.email),
@@ -197,52 +201,93 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   _gap,
+
                   // Password Field
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: _inputDecoration('Password', Icons.lock),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter password';
-                      }
-                      return null;
+                  ValueListenableBuilder<bool>(
+                    valueListenable: _obscureTextPassword,
+                    builder: (context, obscureText, child) {
+                      return TextFormField(
+                        controller: _passwordController,
+                        obscureText: obscureText,
+                        decoration: _inputDecoration(
+                          'Password',
+                          Icons.lock,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              _obscureTextPassword.value =
+                                  !_obscureTextPassword.value;
+                            },
+                            child: Icon(
+                              obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              size: 20.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter password';
+                          }
+                          return null;
+                        },
+                      );
                     },
                   ),
                   _gap,
+
                   // Confirm Password Field
-                  TextFormField(
-                    controller: _confirmPasswordController,
-                    obscureText: true,
-                    decoration: _inputDecoration(
-                        'Confirm Password', Icons.lock_outline),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please confirm password';
-                      }
-                      if (value != _passwordController.text) {
-                        return 'Passwords do not match';
-                      }
-                      return null;
+                  ValueListenableBuilder<bool>(
+                    valueListenable: _obscureTextConfirmPassword,
+                    builder: (context, obscureText, child) {
+                      return TextFormField(
+                        controller: _confirmPasswordController,
+                        obscureText: obscureText,
+                        decoration: _inputDecoration(
+                          'Confirm Password',
+                          Icons.lock_outline,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              _obscureTextConfirmPassword.value =
+                                  !_obscureTextConfirmPassword.value;
+                            },
+                            child: Icon(
+                              obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              size: 20.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please confirm password';
+                          }
+                          if (value != _passwordController.text) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
+                      );
                     },
                   ),
                   _gap,
+
                   // Register Button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color(0xFF1E2751), // Button color
+                        backgroundColor: const Color(0xFF1E2751),
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(30), // Rounded corners
+                          borderRadius: BorderRadius.circular(30),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 15),
                       ),
                       onPressed: () {
                         if (_key.currentState!.validate()) {
-                          // Call Register Bloc on successful validation
                           context.read<RegisterBloc>().add(
                                 RegisterUser(
                                   context: context,
@@ -260,14 +305,11 @@ class _RegisterViewState extends State<RegisterView> {
                       },
                       child: const Text(
                         'Register',
-                        style: TextStyle(
-                            fontSize: 18), // Adjust font size for button
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8),
-
-                  // New Sign-up Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

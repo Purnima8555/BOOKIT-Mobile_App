@@ -11,7 +11,7 @@ class LoginView extends StatelessWidget {
   final _passwordController = TextEditingController();
 
   final _obscureTextPassword =
-      ValueNotifier<bool>(true); // Password visibility toggle
+      ValueNotifier<bool>(true);
   final _gap = const SizedBox(height: 17);
 
   @override
@@ -29,14 +29,15 @@ class LoginView extends StatelessWidget {
                     const Text(
                       'Login',
                       style: TextStyle(
-                        fontSize: 38, // Increased font size
-                        fontWeight: FontWeight.bold, // Increased font weight
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
                         fontFamily: 'Brand Bold',
                         color: Color(0xFF1E2751),
                       ),
                     ),
                     _gap,
-                    // Username field with updated label style
+
+                    // Username
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: TextFormField(
@@ -45,7 +46,7 @@ class LoginView extends StatelessWidget {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.circular(20), // Rounded corners
+                                BorderRadius.circular(20),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.grey),
@@ -53,7 +54,7 @@ class LoginView extends StatelessWidget {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Color(0xFF043155), // Custom focus color
+                              color: Color(0xFF043155),
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(20),
@@ -61,12 +62,12 @@ class LoginView extends StatelessWidget {
                           labelText: 'Username',
                           labelStyle: const TextStyle(
                             fontWeight:
-                                FontWeight.bold, // Increased font weight
-                            fontSize: 16, // Slightly larger font size
-                            color: Colors.black54, // Default label color
+                                FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.black54,
                           ),
                           prefixIcon: const Icon(
-                            Icons.person, // User icon
+                            Icons.person,
                             size: 22.0,
                             color: Colors.black,
                           ),
@@ -80,7 +81,8 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                     _gap,
-                    // Password field with updated label style
+
+                    // Password
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: ValueListenableBuilder<bool>(
@@ -93,7 +95,7 @@ class LoginView extends StatelessWidget {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(
-                                    20), // Rounded corners
+                                    20),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
@@ -103,7 +105,7 @@ class LoginView extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   color:
-                                      Color(0xFF043155), // Custom focus color
+                                      Color(0xFF043155),
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(20),
@@ -111,12 +113,12 @@ class LoginView extends StatelessWidget {
                               labelText: 'Password',
                               labelStyle: const TextStyle(
                                 fontWeight:
-                                    FontWeight.bold, // Increased font weight
-                                fontSize: 16, // Slightly larger font size
-                                color: Colors.black54, // Default label color
+                                    FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
                               ),
                               prefixIcon: const Icon(
-                                Icons.lock, // Lock icon
+                                Icons.lock,
                                 size: 22.0,
                                 color: Colors.black,
                               ),
@@ -156,12 +158,12 @@ class LoginView extends StatelessWidget {
                             print("Forgot Password tapped");
                           },
                           child: const Padding(
-                            padding: EdgeInsets.only(right: 8.0), // Added space
+                            padding: EdgeInsets.only(right: 8.0),
                             child: Text(
                               "Forgot Password?",
                               style: TextStyle(
-                                fontSize: 14, // Increased font size
-                                fontWeight: FontWeight.w500, // Increased weight
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                                 color: Color(0xFF043155),
                                 decoration: TextDecoration.underline,
                               ),
@@ -172,20 +174,20 @@ class LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
 
-                    // Login Button with updated width
+                    // Login Button
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: SizedBox(
-                        width: double.infinity, // Full width within the padding
+                        width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(25), // Rounded corners
+                                  BorderRadius.circular(25),
                             ),
                             backgroundColor: const Color(0xFF1E2751),
                             padding: const EdgeInsets.symmetric(
-                                vertical: 15), // Button color
+                                vertical: 15),
                           ),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
@@ -201,8 +203,8 @@ class LoginView extends StatelessWidget {
                           child: const Text(
                             'Login',
                             style: TextStyle(
-                              fontSize: 20, // Increased font size
-                              fontWeight: FontWeight.normal, // Increased weight
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
                               fontFamily: 'Brand Bold',
                             ),
                           ),
@@ -211,7 +213,7 @@ class LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
 
-                    // New Sign-up Link
+                    // Sign-up Link
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

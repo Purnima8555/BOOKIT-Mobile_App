@@ -23,9 +23,9 @@ class AuthHiveModel extends Equatable {
   @HiveField(6)
   final String confirmPassword;
   @HiveField(7)
-  final String? address; // Optional
+  final String? address;
   @HiveField(8)
-  final String? image; // Optional
+  final String? image;
 
   // Constructor
   AuthHiveModel({

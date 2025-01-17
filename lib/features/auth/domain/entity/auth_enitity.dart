@@ -8,8 +8,8 @@ class AuthEntity extends Equatable {
   final String email;
   final String password;
   final String confirmPassword;
-  final String? address; // Optional address field
-  final String? image; // Optional image field
+  final String? address;
+  final String? image;
 
   const AuthEntity({
     this.userId,

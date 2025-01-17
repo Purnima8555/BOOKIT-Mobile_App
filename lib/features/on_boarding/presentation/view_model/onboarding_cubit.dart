@@ -1,7 +1,6 @@
 import 'package:bookit_flutter_project/features/auth/presentation/view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:bookit_flutter_project/features/auth/presentation/view/register_view.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
   OnboardingCubit() : super(OnboardingInitial());
