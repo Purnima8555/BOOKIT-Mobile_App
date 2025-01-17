@@ -12,6 +12,10 @@ class HiveService {
 
     // Register AuthHiveModel adapter
     Hive.registerAdapter(AuthHiveModelAdapter());
+
+    // Debug: Print contents of the user box (for testing)
+    var hiveService = HiveService();
+    await hiveService.printHiveData(HiveTableConstant.userBox);
   }
 
   // Auth Queries
@@ -55,5 +59,15 @@ class HiveService {
 
   Future<void> close() async {
     await Hive.close();
+  }
+
+  // Debugging method to print all data in a specified box
+  Future<void> printHiveData(String boxName) async {
+    var box = await Hive.openBox(boxName);
+    print('Data in $boxName:');
+    for (var key in box.keys) {
+      print('Key: $key, Value: ${box.get(key)}');
+    }
+    await box.close();
   }
 }
