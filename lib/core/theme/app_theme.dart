@@ -1,61 +1,79 @@
+import 'package:bookit_flutter_project/app/constants/theme_constant.dart';
 import 'package:flutter/material.dart';
 
-ThemeData getApplicationTheme() {
-  return ThemeData(
-    // Primary color for appbar, buttons, etc.
-    primaryColor: const Color(0xFF1E2751),
-    scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-    fontFamily: 'WorkSansSemiBold',
+class AppTheme {
+  AppTheme._();
 
-    // AppBar theme
-    appBarTheme: AppBarTheme(
-      backgroundColor: const Color(0xFF1E2751),
-      titleTextStyle: const TextStyle(
-        color: Colors.white,
-        fontFamily: 'WorkSansSemiBold',
-        fontSize: 20.0,
-      ),
-    ),
+  static getApplicationTheme({required bool isDarkMode}) {
+    return ThemeData(
+      // change the theme according to the user preference
+      colorScheme: isDarkMode
+          ? const ColorScheme.dark(
+              primary: ThemeConstant.darkPrimaryColor,
+            )
+          : const ColorScheme.light(
+              primary: Color.fromARGB(255, 17, 119, 20),
+            ),
+      brightness: isDarkMode ? Brightness.dark : Brightness.light,
+      fontFamily: 'Montserrat',
+      useMaterial3: true,
 
-    // ElevatedButton theme (for buttons)
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        primary: const Color(0xFF1E2751),
-        textStyle: const TextStyle(
-          fontSize: 20,
+      // Change app bar color
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Color(0xFF1E2751), // Updated background color
+        centerTitle: true,
+        titleTextStyle: TextStyle(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontSize: 20,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 20),
       ),
-    ),
 
-    // Input field styling
-    inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const EdgeInsets.symmetric(vertical: 19),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20),
-        borderSide: const BorderSide(color: Colors.black),
+// Change elevated button theme
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          foregroundColor: Colors.white,
+          backgroundColor: const Color(0xFF1E2751), // Updated background color
+          textStyle: const TextStyle(
+            fontSize: 20,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20),
-        borderSide: const BorderSide(color: Colors.black, width: 2.0),
+
+      // Change text field theme
+      inputDecorationTheme: const InputDecorationTheme(
+        contentPadding: EdgeInsets.all(15),
+        border: OutlineInputBorder(),
+        labelStyle: TextStyle(
+          fontSize: 20,
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ThemeConstant.primaryColor,
+          ),
+        ),
       ),
-      hintStyle: const TextStyle(
-        fontFamily: 'WorkSansSemiBold',
-        fontSize: 15.0,
-        color: Colors.grey,
+      // Circular progress bar theme
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: ThemeConstant.primaryColor,
       ),
-      labelStyle: const TextStyle(
-        fontFamily: 'WorkSansSemiBold',
-        fontSize: 15.0,
-        color: Colors.black,
+      //Bottom navigation bar theme
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.lightGreen,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
       ),
-      prefixIconColor: Colors.black,
-      suffixIconColor: Colors.black,
-    ),
-  );
+    );
+  }
 }
