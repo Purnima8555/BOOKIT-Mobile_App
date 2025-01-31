@@ -9,6 +9,14 @@ sealed class RegisterEvent extends Equatable {
 
 class LoadCoursesAndBatches extends RegisterEvent {}
 
+class UploadImage extends RegisterEvent {
+  final File file;
+
+  const UploadImage({
+    required this.file,
+  });
+}
+
 class RegisterUser extends RegisterEvent {
   final String full_name;
   final String username;
