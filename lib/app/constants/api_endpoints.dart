@@ -10,7 +10,7 @@ class ApiEndpoints {
   // static const String baseUrl = "http://localhost:3000/api/v1/"; // iPhone Simulator
 
   // Image URL for uploads
-  static const String imageUrl = "http://192.168.10.6:3000/uploads/";
+  static const String imageUrl = "http://192.168.10.6:3000/profilePicture/";
   static const String uploadImage = "auth/uploadImage";
 
   // ====================== Auth Routes ======================

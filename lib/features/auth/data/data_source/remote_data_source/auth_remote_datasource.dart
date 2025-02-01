@@ -85,15 +85,19 @@ class AuthRemoteDataSource implements IAuthDataSource {
         data: formData,
       );
 
-      if (response.statusCode == 201) {
-        return response.data['data'];
+      if (response.statusCode == 200) {
+        // Extract the image name from the response
+        final str = response.data['data'];
+
+        return str;
       } else {
         throw Exception(response.statusMessage);
       }
     } on DioException catch (e) {
-      throw Exception(e.response?.data ?? "An error occurred");
+      throw Exception(e);
     } catch (e) {
-      throw Exception(e.toString());
+      throw Exception(e);
     }
   }
 }
+
