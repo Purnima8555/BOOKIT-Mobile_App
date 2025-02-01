@@ -39,17 +39,16 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       password: event.password,
       confirmPassword: event.confirmPassword,
       address: event.address,
-      image: event.image,
+      image: state.imageName,
     ));
 
     result.fold(
-      (failure) {
+      (l) {
         emit(state.copyWith(isLoading: false, isSuccess: false));
         showMySnackBar(
-            context: event.context,
-            message: "Registration Failed. Please try again.");
+            context: event.context, message: l.message, color: Colors.red);
       },
-      (success) {
+      (r) {
         emit(state.copyWith(isLoading: false, isSuccess: true));
         showMySnackBar(
             context: event.context, message: "Registration Successful");

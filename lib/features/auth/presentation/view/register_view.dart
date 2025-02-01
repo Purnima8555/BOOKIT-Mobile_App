@@ -328,6 +328,9 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                       onPressed: () {
                         if (_key.currentState!.validate()) {
+                          final registerState =
+                              context.read<RegisterBloc>().state;
+                          final imageName = registerState.imageName;
                           context.read<RegisterBloc>().add(
                                 RegisterUser(
                                   context: context,
@@ -336,9 +339,8 @@ class _RegisterViewState extends State<RegisterView> {
                                   contact_no: _phoneController.text,
                                   email: _emailController.text,
                                   password: _passwordController.text,
-                                  confirmPassword:
-                                      _confirmPasswordController.text,
-                                  image: null, // Add image handling logic here
+                                  confirmPassword: _confirmPasswordController.text,
+                                  image: imageName, // Add image handling logic here
                                 ),
                               );
                         }
