@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:bookit_flutter_project/core/common/snackbar/my_snackbar.dart';
+import 'package:bookit_flutter_project/features/auth/domain/use_case/register_use_case.dart';
 import 'package:bookit_flutter_project/features/auth/domain/use_case/upload_image_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:bookit_flutter_project/core/common/snackbar/my_snackbar.dart';
-import 'package:bookit_flutter_project/features/auth/domain/use_case/register_use_case.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
@@ -17,8 +17,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc({
     required RegisterUseCase registerUseCase,
     required UploadImageUsecase uploadImageUsecase,
-    })
-      : _registerUseCase = registerUseCase,
+  })  : _registerUseCase = registerUseCase,
         _uploadImageUsecase = uploadImageUsecase,
         super(RegisterState.initial()) {
     on<RegisterUser>(_onRegisterUserEvent);
@@ -41,6 +40,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       address: event.address,
       image: state.imageName,
     ));
+
+    print(result);
 
     result.fold(
       (l) {
@@ -67,6 +68,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       ),
     );
 
+    print(result);
     result.fold(
       (l) => emit(state.copyWith(isLoading: false, isSuccess: false)),
       (r) {

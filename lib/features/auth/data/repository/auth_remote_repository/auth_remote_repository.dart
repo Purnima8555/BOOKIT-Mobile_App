@@ -5,6 +5,7 @@ import 'package:bookit_flutter_project/features/auth/data/data_source/remote_dat
 import 'package:bookit_flutter_project/features/auth/domain/entity/auth_enitity.dart';
 import 'package:bookit_flutter_project/features/auth/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
+
 class AuthRemoteRepository implements IAuthRepository {
   final AuthRemoteDataSource _authRemoteDataSource;
 

@@ -6,11 +6,11 @@ class ApiEndpoints {
   static const Duration receiveTimeout = Duration(seconds: 1000);
 
   // Base URLs for local development
-  static const String baseUrl = "http://192.168.10.6:3000/api/"; // Android Emulator
+  static const String baseUrl = "http://10.0.2.2:3000/api/"; // Android Emulator
   // static const String baseUrl = "http://localhost:3000/api/v1/"; // iPhone Simulator
 
   // Image URL for uploads
-  static const String imageUrl = "http://192.168.10.6:3000/profilePicture/";
+  static const String imageUrl = "http://10.0.2.2:3000/profilePicture/";
   static const String uploadImage = "auth/uploadImage";
 
   // ====================== Auth Routes ======================

@@ -24,10 +24,8 @@ class _RegisterViewState extends State<RegisterView> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  final _obscureTextPassword =
-      ValueNotifier<bool>(true);
-  final _obscureTextConfirmPassword =
-      ValueNotifier<bool>(true);
+  final _obscureTextPassword = ValueNotifier<bool>(true);
+  final _obscureTextConfirmPassword = ValueNotifier<bool>(true);
 
   InputDecoration _inputDecoration(String label, IconData icon,
       {Widget? suffixIcon}) {
@@ -57,8 +55,7 @@ class _RegisterViewState extends State<RegisterView> {
         size: 22.0,
         color: Colors.black,
       ),
-      suffixIcon:
-          suffixIcon,
+      suffixIcon: suffixIcon,
     );
   }
 
@@ -75,6 +72,7 @@ class _RegisterViewState extends State<RegisterView> {
     try {
       final image = await ImagePicker().pickImage(source: imageSource);
       if (image != null) {
+        print('$_img,image');
         setState(() {
           _img = File(image.path);
           // Send image to server
@@ -339,8 +337,10 @@ class _RegisterViewState extends State<RegisterView> {
                                   contact_no: _phoneController.text,
                                   email: _emailController.text,
                                   password: _passwordController.text,
-                                  confirmPassword: _confirmPasswordController.text,
-                                  image: imageName, // Add image handling logic here
+                                  confirmPassword:
+                                      _confirmPasswordController.text,
+                                  image:
+                                      imageName, // Add image handling logic here
                                 ),
                               );
                         }
