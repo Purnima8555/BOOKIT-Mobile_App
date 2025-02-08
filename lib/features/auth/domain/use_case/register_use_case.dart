@@ -67,6 +67,7 @@ class RegisterUseCase implements UsecaseWithParams<void, RegisterUserParams> {
       address: params.address,
       image: params.image,
     );
+    print("$authEntity, auth");
 
     return repository.registerUser(authEntity);
   }
