@@ -44,10 +44,12 @@ class AuthRemoteRepository implements IAuthRepository {
 
   @override
   Future<Either<Failure, String>> uploadProfilePicture(File file) async {
+    print("file, $file");
     try {
       final imageName = await _authRemoteDataSource.uploadProfilePicture(file);
       return Right(imageName);
     } catch (e) {
+      print(file);
       return Left(ApiFailure(message: e.toString()));
     }
   }
