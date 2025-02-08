@@ -71,34 +71,36 @@ class AuthRemoteDataSource implements IAuthDataSource {
   @override
   Future<String> uploadProfilePicture(File file) async {
     try {
-      String fileName = file.path.split('/').last;
-      FormData formData = FormData.fromMap(
-        {
-          'image': await MultipartFile.fromFile(
-            file.path,
-            filename: fileName,
-          ),
-        },
-      );
+      // Ensure the file exists before proceeding
+      if (!await file.exists()) {
+        throw Exception('File does not exist at the provided path');
+      }
 
+      String fileName = file.path.split('/').last;
+      FormData formData = FormData.fromMap({
+        'image': await MultipartFile.fromFile(file.path, filename: fileName),
+      });
+
+      // Sending the request
       Response response = await _dio.post(
         ApiEndpoints.uploadImage,
         data: formData,
       );
-      print("response:$response");
+
+      print("Response: $response");
 
       if (response.statusCode == 200) {
-        // Extract the image name from the response
-        final str = response.data['data'];
-
-        return str;
+        return response.data[
+            'data']; // Assuming 'data' is the key containing the image filename
       } else {
-        throw Exception(response.statusMessage);
+        throw Exception('Error: ${response.statusMessage}');
       }
     } on DioException catch (e) {
-      throw Exception(e);
+      // Dio specific error handling
+      throw Exception('Dio error: ${e.message}');
     } catch (e) {
-      throw Exception(e);
+      // General error handling
+      throw Exception('Unknown error: $e');
     }
   }
 }
