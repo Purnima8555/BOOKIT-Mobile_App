@@ -72,7 +72,7 @@ class _RegisterViewState extends State<RegisterView> {
     try {
       final image = await ImagePicker().pickImage(source: imageSource);
       if (image != null) {
-        print('$_img,image');
+        // print('$_img,image');
         setState(() {
           _img = File(image.path);
           // Send image to server
