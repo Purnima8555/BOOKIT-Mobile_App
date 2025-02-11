@@ -39,4 +39,17 @@ class RegisterUser extends RegisterEvent {
     this.image,
     required this.context,
   });
+
+  @override
+  List<Object> get props => [
+        full_name,
+        username,
+        email,
+        contact_no,
+        // address,
+        // image,
+        confirmPassword,
+        password,
+        context,
+      ];
 }
