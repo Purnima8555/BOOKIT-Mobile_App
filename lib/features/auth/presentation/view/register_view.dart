@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:bookit_flutter_project/features/auth/presentation/view/login_view.dart';
 import 'package:bookit_flutter_project/features/auth/presentation/view_model/signup/register_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -58,6 +62,34 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
+  // Check for camera permission
+  Future<void> checkCameraPermission() async {
+    if (await Permission.camera.request().isRestricted ||
+        await Permission.camera.request().isDenied) {
+      await Permission.camera.request();
+    }
+  }
+
+  File? _img;
+  Future _browseImage(ImageSource imageSource) async {
+    try {
+      final image = await ImagePicker().pickImage(source: imageSource);
+      if (image != null) {
+        setState(() {
+          _img = File(image.path);
+          // Send image to server
+          context.read<RegisterBloc>().add(
+                UploadImage(file: _img!),
+              );
+        });
+      } else {
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +135,8 @@ class _RegisterViewState extends State<RegisterView> {
                             children: [
                               ElevatedButton.icon(
                                 onPressed: () {
+                                  checkCameraPermission();
+                                  _browseImage(ImageSource.camera);
                                   Navigator.pop(context);
                                   // Upload image from camera (optional)
                                 },
@@ -116,7 +150,10 @@ class _RegisterViewState extends State<RegisterView> {
                                 ),
                               ),
                               ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _browseImage(ImageSource.gallery);
+                                  Navigator.pop(context);
+                                },
                                 icon: const Icon(
                                   Icons.image,
                                   color: Colors.white,
@@ -131,12 +168,15 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                       );
                     },
-                    child: const SizedBox(
+                    child: SizedBox(
                       height: 150,
                       width: 150,
                       child: CircleAvatar(
                         radius: 40,
-                        backgroundImage: AssetImage('assets/images/logo.png'),
+                        backgroundImage: _img != null
+                            ? FileImage(_img!)
+                            : const AssetImage('assets/images/logo.png')
+                                as ImageProvider,
                       ),
                     ),
                   ),
@@ -288,6 +328,9 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                       onPressed: () {
                         if (_key.currentState!.validate()) {
+                          final registerState =
+                              context.read<RegisterBloc>().state;
+                          final imageName = registerState.imageName;
                           context.read<RegisterBloc>().add(
                                 RegisterUser(
                                   context: context,
@@ -296,9 +339,8 @@ class _RegisterViewState extends State<RegisterView> {
                                   contact_no: _phoneController.text,
                                   email: _emailController.text,
                                   password: _passwordController.text,
-                                  confirmPassword:
-                                      _confirmPasswordController.text,
-                                  image: null, // Add image handling logic here
+                                  confirmPassword: _confirmPasswordController.text,
+                                  image: imageName, // Add image handling logic here
                                 ),
                               );
                         }
