@@ -27,15 +27,16 @@ class RegisterUserParams extends Equatable {
   });
 
   // Initial constructor
-  const RegisterUserParams.initial()
-      : full_name = '',
-        username = '',
-        contact_no = '',
-        email = '',
-        password = '',
-        confirmPassword = '',
-        address = null,
-        image = null;
+  const RegisterUserParams.initial({
+    required this.full_name,
+    required this.username,
+    required this.contact_no,
+    required this.email,
+    required this.password,
+    required this.confirmPassword,
+    this.address,
+    this.image,
+  });
 
   @override
   List<Object?> get props => [
@@ -45,8 +46,7 @@ class RegisterUserParams extends Equatable {
         email,
         password,
         confirmPassword,
-        address,
-        image,
+        address
       ];
 }
 

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:bookit_flutter_project/app/constants/api_endpoints.dart';
 import 'package:bookit_flutter_project/features/auth/data/data_source/auth_data_source.dart';
 import 'package:bookit_flutter_project/features/auth/domain/entity/auth_enitity.dart';
@@ -84,16 +85,20 @@ class AuthRemoteDataSource implements IAuthDataSource {
         ApiEndpoints.uploadImage,
         data: formData,
       );
+      print("response:$response");
 
-      if (response.statusCode == 201) {
-        return response.data['data'];
+      if (response.statusCode == 200) {
+        // Extract the image name from the response
+        final str = response.data['data'];
+
+        return str;
       } else {
         throw Exception(response.statusMessage);
       }
     } on DioException catch (e) {
-      throw Exception(e.response?.data ?? "An error occurred");
+      throw Exception(e);
     } catch (e) {
-      throw Exception(e.toString());
+      throw Exception(e);
     }
   }
 }
