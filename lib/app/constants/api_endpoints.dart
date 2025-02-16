@@ -28,6 +28,7 @@ class ApiEndpoints {
   static const String getAllBooks = "books/"; // Fetch all books
   static const String getNewBooks = "books/new/newbooks"; // Fetch new books
   static const String getBestBooks = "books/best/bestbooks"; // Fetch best books
+  static const String getBooksByGenre = 'books/genre';
   static const String getBookById =
       "books/:id"; // Get a specific book by ID (append bookId)
 
