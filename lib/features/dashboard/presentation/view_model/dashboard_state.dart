@@ -1,5 +1,5 @@
+import 'package:bookit_flutter_project/features/explore/presentation/view/explore_view.dart';
 import 'package:bookit_flutter_project/features/home/presentation/view/home_view.dart';
-import 'package:bookit_flutter_project/view/explore_view.dart';
 import 'package:bookit_flutter_project/view/profile_view.dart';
 import 'package:bookit_flutter_project/view/saved_view.dart';
 import 'package:equatable/equatable.dart';
