@@ -11,6 +11,11 @@ import 'package:bookit_flutter_project/features/auth/domain/use_case/upload_imag
 import 'package:bookit_flutter_project/features/auth/presentation/view_model/login/login_bloc.dart';
 import 'package:bookit_flutter_project/features/auth/presentation/view_model/signup/register_bloc.dart';
 import 'package:bookit_flutter_project/features/dashboard/presentation/view_model/dashboard_cubit.dart';
+import 'package:bookit_flutter_project/features/explore/data/datasource/remote_data_source/explore_remote_datasource.dart';
+import 'package:bookit_flutter_project/features/explore/data/repository/explore_remote_repository/explore_remote_repository.dart';
+import 'package:bookit_flutter_project/features/explore/domain/usecase/get_all_books_usecase.dart';
+import 'package:bookit_flutter_project/features/explore/domain/usecase/get_books_by_genre_usecase.dart';
+import 'package:bookit_flutter_project/features/explore/presentation/view_model/explore_bloc.dart';
 import 'package:bookit_flutter_project/features/home/data/datasource/remote_data_source/home_remote_datasource.dart';
 import 'package:bookit_flutter_project/features/home/data/repository/home_remote_repository/home_remote_repository.dart';
 import 'package:bookit_flutter_project/features/home/domain/usecase/get_all_books_usecase.dart';
@@ -35,6 +40,7 @@ Future<void> initDependencies() async {
   await _initLoginDependencies();
   await _initDashboardDependencies();
   await _initHomeDependencies();
+  await _initExploreDependencies();
   await _initOnboardingDependencies();
   await _initSplashScreenDependencies();
 }
@@ -182,5 +188,35 @@ _initHomeDependencies() {
       getBestBooksUsecase: getIt<GetBestBooksUsecase>(),
     ),
   );
+}
 
+_initExploreDependencies() {
+  // =========================== Data Source ===========================
+  getIt.registerLazySingleton<ExploreRemoteDataSource>(
+    () => ExploreRemoteDataSource(getIt<Dio>()),
+  );
+
+  // =========================== Repository ===========================
+  getIt.registerLazySingleton<ExploreRemoteRepository>(
+    () => ExploreRemoteRepository(getIt<ExploreRemoteDataSource>()),
+  );
+
+  // =========================== Usecases ===========================
+  getIt.registerLazySingleton<GetAllExploreBooksUsecase>(
+    () => GetAllExploreBooksUsecase(
+        exploreRepository: getIt<ExploreRemoteRepository>()),
+  );
+
+  getIt.registerLazySingleton<GetBooksByGenreUsecase>(
+    () => GetBooksByGenreUsecase(
+        exploreRepository: getIt<ExploreRemoteRepository>()),
+  );
+
+  // Register Explore Bloc
+  getIt.registerFactory<ExploreBloc>(
+    () => ExploreBloc(
+      getAllBooksUsecase: getIt<GetAllExploreBooksUsecase>(),
+      getBooksByGenreUsecase: getIt<GetBooksByGenreUsecase>(),
+    ),
+  );
 }
