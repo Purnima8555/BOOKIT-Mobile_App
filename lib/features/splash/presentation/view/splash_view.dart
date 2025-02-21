@@ -1,25 +1,30 @@
-import 'package:bookit_flutter_project/features/splash/presentation/view_model/splash_cubit.dart';
+import 'package:bookit_flutter_project/features/on_boarding/presentation/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
-  State<SplashView> createState() => _SplashViewState();
+  _SplashViewState createState() => _SplashViewState();
 }
 
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      // You can navigate to your next screen here after 3 seconds.
-      // For example: Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
-      context
-          .read<SplashCubit>()
-          .init(context);
-    });
+    _navigateToNextScreen();
+  }
+
+  // Navigate to onboarding screen after a short delay
+  _navigateToNextScreen() async {
+    await Future.delayed(
+        const Duration(seconds: 4));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              const OnboardingView()),
+    );
   }
 
   @override
@@ -37,22 +42,25 @@ class _SplashViewState extends State<SplashView> {
                   width: 200,
                   child: Image.asset('assets/images/logo_nobg.png'),
                 ),
+                const SizedBox(height: 5),
                 const Text(
-                  'BOOKIT!:Rent, Read, Repeat',
+                  'BOOKIT! : Rent, Read, Repeat',
                   style: TextStyle(
                     fontSize: 25,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 const CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.white),
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 const Text(
                   'version : 1.0.0',
                   style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
                 ),
@@ -66,6 +74,7 @@ class _SplashViewState extends State<SplashView> {
               'Developed by: Me Ofc',
               style: TextStyle(
                 fontSize: 15,
+                fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
             ),
