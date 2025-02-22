@@ -12,14 +12,14 @@ class ApiEndpoints {
   // static const String baseUrl = "http://localhost:3000/api/v1/"; // iPhone Simulator
 
   // Image URL for uploads
-  static const String imageUrl = "http://10.0.2.2:3000/profilePicture/";
+  static const String imageUrl = "http://192.168.10.4:3000/profilePicture/";
   static const String uploadImage = "auth/uploadImage";
 
   // ====================== Auth Routes ======================
   static const String login = "auth/login";
   static const String register = "auth/register";
-  static const String getUserProfile =
-      "auth/profile"; // Fetch logged-in user's profile
+  static const String getCurrentUser = "customer"; // Fetch logged-in user's profile
+  static const String getUserProfile = "auth/profile"; // Fetch logged-in user's profile
   static const String updateUser = "auth/updateUser/"; // Update user info
   static const String deleteUser = "auth/deleteUser/"; // Delete user account
 

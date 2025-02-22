@@ -5,11 +5,13 @@ import 'package:bookit_flutter_project/features/auth/data/data_source/local_data
 import 'package:bookit_flutter_project/features/auth/data/data_source/remote_data_source/auth_remote_datasource.dart';
 import 'package:bookit_flutter_project/features/auth/data/repository/auth_local_repositroy/auth_local_repository.dart';
 import 'package:bookit_flutter_project/features/auth/data/repository/auth_remote_repository/auth_remote_repository.dart';
+import 'package:bookit_flutter_project/features/auth/domain/use_case/get_user_use_case.dart';
 import 'package:bookit_flutter_project/features/auth/domain/use_case/login_use_case.dart';
 import 'package:bookit_flutter_project/features/auth/domain/use_case/register_use_case.dart';
 import 'package:bookit_flutter_project/features/auth/domain/use_case/upload_image_use_case.dart';
 import 'package:bookit_flutter_project/features/auth/presentation/view_model/login/login_bloc.dart';
 import 'package:bookit_flutter_project/features/auth/presentation/view_model/signup/register_bloc.dart';
+import 'package:bookit_flutter_project/features/auth/presentation/view_model/user/user_bloc.dart';
 import 'package:bookit_flutter_project/features/dashboard/presentation/view_model/dashboard_cubit.dart';
 import 'package:bookit_flutter_project/features/explore/data/datasource/remote_data_source/explore_remote_datasource.dart';
 import 'package:bookit_flutter_project/features/explore/data/repository/explore_remote_repository/explore_remote_repository.dart';
@@ -38,6 +40,7 @@ Future<void> initDependencies() async {
 
   await _initRegisterDependencies();
   await _initLoginDependencies();
+  await _initUserDependencies();
   await _initDashboardDependencies();
   await _initHomeDependencies();
   await _initExploreDependencies();
@@ -156,7 +159,6 @@ _initSplashScreenDependencies() async {
 }
 
 _initHomeDependencies() {
-
   // =========================== Data Source ===========================
   getIt.registerLazySingleton<HomeRemoteDataSource>(
     () => HomeRemoteDataSource(getIt<Dio>()),
@@ -217,6 +219,22 @@ _initExploreDependencies() {
     () => ExploreBloc(
       getAllBooksUsecase: getIt<GetAllExploreBooksUsecase>(),
       getBooksByGenreUsecase: getIt<GetBooksByGenreUsecase>(),
+    ),
+  );
+}
+
+_initUserDependencies() {
+  // =========================== Usecases ===========================
+  getIt.registerLazySingleton<GetCurrentUserUsecase>(
+    () => GetCurrentUserUsecase(
+      authRepository: getIt<AuthRemoteRepository>(),
+    ),
+  );
+
+  // Register User Bloc
+  getIt.registerFactory<UserBloc>(
+    () => UserBloc(
+      getCurrentUserUsecase: getIt<GetCurrentUserUsecase>(),
     ),
   );
 }

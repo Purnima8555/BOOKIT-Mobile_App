@@ -1,3 +1,4 @@
+import 'package:bookit_flutter_project/app/constants/api_endpoints.dart';
 import 'package:bookit_flutter_project/features/auth/domain/entity/auth_enitity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -47,7 +48,7 @@ class AuthApiModel extends Equatable {
       password: password ?? '',
       confirmPassword: confirmPassword ?? '',
       address: address,
-      image: image,
+      image: ApiEndpoints.imageUrl + image!,
     );
   }
 
