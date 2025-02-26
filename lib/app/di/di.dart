@@ -25,6 +25,12 @@ import 'package:bookit_flutter_project/features/home/domain/usecase/get_best_boo
 import 'package:bookit_flutter_project/features/home/domain/usecase/get_new_books_usecase.dart';
 import 'package:bookit_flutter_project/features/home/presentation/view_model/home_bloc.dart';
 import 'package:bookit_flutter_project/features/on_boarding/presentation/view_model/onboarding_cubit.dart';
+import 'package:bookit_flutter_project/features/saved/data/data_source/remote_data_source/saved_remote_datasource.dart';
+import 'package:bookit_flutter_project/features/saved/data/repository/saved_remote_repository/saved_remote_repository.dart';
+import 'package:bookit_flutter_project/features/saved/domain/use_case/add_saved_books_usecase.dart';
+import 'package:bookit_flutter_project/features/saved/domain/use_case/get_saved_books_use_case.dart';
+import 'package:bookit_flutter_project/features/saved/domain/use_case/remove_saved_books_usecase.dart';
+import 'package:bookit_flutter_project/features/saved/presentation/view_model/saved_bloc.dart';
 import 'package:bookit_flutter_project/features/splash/presentation/view_model/splash_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -44,6 +50,7 @@ Future<void> initDependencies() async {
   await _initDashboardDependencies();
   await _initHomeDependencies();
   await _initExploreDependencies();
+  await _initSavedDependencies();
   await _initOnboardingDependencies();
   await _initSplashScreenDependencies();
 }
@@ -235,6 +242,41 @@ _initUserDependencies() {
   getIt.registerFactory<UserBloc>(
     () => UserBloc(
       getCurrentUserUsecase: getIt<GetCurrentUserUsecase>(),
+    ),
+  );
+}
+
+_initSavedDependencies() {
+  // =========================== Data Source ===========================
+  getIt.registerLazySingleton<SavedRemoteDataSource>(
+    () => SavedRemoteDataSource(getIt<Dio>()),
+  );
+
+  // =========================== Repository ===========================
+  getIt.registerLazySingleton<SavedRemoteRepository>(
+    () => SavedRemoteRepository(getIt<SavedRemoteDataSource>()),
+  );
+
+  // =========================== Usecases ===========================
+  getIt.registerLazySingleton<GetSavedBooksUseCase>(
+    () => GetSavedBooksUseCase(savedRepository: getIt<SavedRemoteRepository>()),
+  );
+
+  getIt.registerLazySingleton<AddSavedBookUseCase>(
+    () => AddSavedBookUseCase(savedRepository: getIt<SavedRemoteRepository>()),
+  );
+
+  getIt.registerLazySingleton<RemoveSavedBookUseCase>(
+    () =>
+        RemoveSavedBookUseCase(savedRepository: getIt<SavedRemoteRepository>()),
+  );
+
+  // Register Saved Bloc
+  getIt.registerFactory<SavedBloc>(
+    () => SavedBloc(
+      getSavedBooksUseCase: getIt<GetSavedBooksUseCase>(),
+      addSavedBookUseCase: getIt<AddSavedBookUseCase>(),
+      removeSavedBookUseCase: getIt<RemoveSavedBookUseCase>(),
     ),
   );
 }
