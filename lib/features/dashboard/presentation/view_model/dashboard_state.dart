@@ -1,7 +1,7 @@
 import 'package:bookit_flutter_project/features/explore/presentation/view/explore_view.dart';
 import 'package:bookit_flutter_project/features/home/presentation/view/home_view.dart';
+import 'package:bookit_flutter_project/features/saved/presentation/view/saved_view.dart';
 import 'package:bookit_flutter_project/view/profile_view.dart';
-import 'package:bookit_flutter_project/view/saved_view.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -15,13 +15,13 @@ class DashboardState extends Equatable {
   });
 
   static DashboardState initial() {
-    return DashboardState(
+    return const DashboardState(
       selectedIndex: 0,
       pages: [
-        const HomeView(),
-        const ExploreView(),
+        HomeView(),
+        ExploreView(),
         SavedView(),
-        const ProfileView(),
+        ProfileView(),
       ],
     );
   }

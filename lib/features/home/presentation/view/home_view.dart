@@ -35,31 +35,36 @@ class _HomeViewState extends State<HomeView> {
                 // Profile tap action
               },
             ),
-            // Featured Books Section with Enhanced Design
+            // Featured Books Section (unchanged)
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Featured Books',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            foreground: Paint()
-                              ..shader = const LinearGradient(
-                                colors: [Color(0xFF6A1B9A), Color(0xFF1565C0)],
-                              ).createShader(
-                                  const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Featured Books',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..shader = const LinearGradient(
+                                  colors: [
+                                    Color(0xFF1E2751),
+                                    Color(0xFF2196F3)
+                                  ],
+                                ).createShader(
+                                    const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
                     BlocBuilder<HomeBloc, HomeState>(
                       builder: (context, state) {
                         if (state.isLoading) {
@@ -82,7 +87,6 @@ class _HomeViewState extends State<HomeView> {
                                   margin: const EdgeInsets.only(right: 20),
                                   child: Stack(
                                     children: [
-                                      // Book Card
                                       Positioned(
                                         bottom: 0,
                                         left: 0,
@@ -93,7 +97,7 @@ class _HomeViewState extends State<HomeView> {
                                             gradient: LinearGradient(
                                               colors: [
                                                 Colors.white,
-                                                Colors.grey.shade100,
+                                                Colors.grey.shade100
                                               ],
                                               begin: Alignment.topCenter,
                                               end: Alignment.bottomCenter,
@@ -113,7 +117,7 @@ class _HomeViewState extends State<HomeView> {
                                           padding: const EdgeInsets.all(16),
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
@@ -125,54 +129,31 @@ class _HomeViewState extends State<HomeView> {
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.center,
                                               ),
                                               const SizedBox(height: 4),
                                               Text(
                                                 book.author,
                                                 style: TextStyle(
-                                                  color: Colors.grey[600],
-                                                ),
+                                                    color: Colors.grey[600]),
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.center,
                                               ),
                                               const SizedBox(height: 8),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Rs ${book.price.toInt()}',
-                                                    style: const TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      const Icon(Icons.star,
-                                                          color: Colors.amber,
-                                                          size: 16),
-                                                      Text(
-                                                        '4.${index + 5}',
-                                                        style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                              Text(
+                                                'Rs ${book.price.toInt()}',
+                                                style: const TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.center,
                                               ),
                                             ],
                                           ),
                                         ),
                                       ),
-                                      // Book Cover
                                       Positioned(
                                         top: 0,
                                         left: 20,
@@ -203,11 +184,8 @@ class _HomeViewState extends State<HomeView> {
                                                 return Container(
                                                   color: Colors.grey,
                                                   child: const Center(
-                                                    child: Icon(
-                                                      Icons.error,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
+                                                      child: Icon(Icons.error,
+                                                          color: Colors.white)),
                                                 );
                                               },
                                             ),
@@ -227,31 +205,36 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
             ),
-            // New Releases Section
+            // New Releases Section (unchanged)
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'New Releases',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            foreground: Paint()
-                              ..shader = const LinearGradient(
-                                colors: [Color(0xFF1565C0), Color(0xFF6A1B9A)],
-                              ).createShader(
-                                  const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'New Releases',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..shader = const LinearGradient(
+                                  colors: [
+                                    Color(0xFF1E2751),
+                                    Color(0xFF2196F3)
+                                  ],
+                                ).createShader(
+                                    const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                            ),
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
                     BlocBuilder<HomeBloc, HomeState>(
                       builder: (context, state) {
                         if (state.isLoading) {
@@ -320,11 +303,8 @@ class _HomeViewState extends State<HomeView> {
                                               return Container(
                                                 color: Colors.grey,
                                                 child: const Center(
-                                                  child: Icon(
-                                                    Icons.error,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
+                                                    child: Icon(Icons.error,
+                                                        color: Colors.white)),
                                               );
                                             },
                                           ),
@@ -342,9 +322,9 @@ class _HomeViewState extends State<HomeView> {
                                               Text(
                                                 book.title,
                                                 style: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -352,8 +332,7 @@ class _HomeViewState extends State<HomeView> {
                                               Text(
                                                 book.author,
                                                 style: TextStyle(
-                                                  color: Colors.grey[600],
-                                                ),
+                                                    color: Colors.grey[600]),
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -375,9 +354,8 @@ class _HomeViewState extends State<HomeView> {
                                                   Container(
                                                     padding: const EdgeInsets
                                                         .symmetric(
-                                                      horizontal: 12,
-                                                      vertical: 6,
-                                                    ),
+                                                        horizontal: 12,
+                                                        vertical: 6),
                                                     decoration: BoxDecoration(
                                                       color: const Color(
                                                           0xFF1E2751),
@@ -388,10 +366,9 @@ class _HomeViewState extends State<HomeView> {
                                                     child: const Text(
                                                       'Buy Now',
                                                       style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                     ),
                                                   ),
                                                 ],
@@ -413,31 +390,36 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
             ),
-            // Bestsellers Section
+            // Bestsellers Section (Updated with Badges)
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Bestsellers',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            foreground: Paint()
-                              ..shader = const LinearGradient(
-                                colors: [Color(0xFF4527A0), Color(0xFF1565C0)],
-                              ).createShader(
-                                  const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Bestsellers',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..shader = const LinearGradient(
+                                  colors: [
+                                    Color(0xFF1E2751),
+                                    Color(0xFF2196F3)
+                                  ],
+                                ).createShader(
+                                    const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                            ),
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
                     BlocBuilder<HomeBloc, HomeState>(
                       builder: (context, state) {
                         if (state.isLoading) {
@@ -461,99 +443,96 @@ class _HomeViewState extends State<HomeView> {
                                 : state.bestBooks.length,
                             itemBuilder: (context, index) {
                               final book = state.bestBooks[index];
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.2),
-                                      spreadRadius: 1,
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              const BorderRadius.vertical(
-                                            top: Radius.circular(16),
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.black.withOpacity(0.2),
-                                              spreadRadius: 1,
-                                              blurRadius: 8,
-                                              offset: const Offset(0, 4),
-                                            ),
-                                          ],
+                              return Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.2),
+                                          spreadRadius: 1,
+                                          blurRadius: 8,
+                                          offset: const Offset(0, 4),
                                         ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              const BorderRadius.vertical(
-                                            top: Radius.circular(16),
-                                          ),
-                                          child: Image.network(
-                                            book.image,
-                                            fit: BoxFit.cover,
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return Container(
-                                                color: Colors.grey,
-                                                child: const Center(
-                                                  child: Icon(
-                                                    Icons.error,
-                                                    color: Colors.white,
-                                                  ),
+                                      ],
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          flex: 3,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.vertical(
+                                                      top: Radius.circular(16)),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.2),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 8,
+                                                  offset: const Offset(0, 4),
                                                 ),
-                                              );
-                                            },
+                                              ],
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.vertical(
+                                                      top: Radius.circular(16)),
+                                              child: Image.network(
+                                                book.image,
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return Container(
+                                                    color: Colors.grey,
+                                                    child: const Center(
+                                                        child: Icon(Icons.error,
+                                                            color:
+                                                                Colors.white)),
+                                                  );
+                                                },
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              book.title,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            const SizedBox(height: 4),
-                                            Text(
-                                              book.author,
-                                              style: TextStyle(
-                                                color: Colors.grey[600],
-                                                fontSize: 12,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            const SizedBox(height: 8),
-                                            Row(
+                                        Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(12),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                  MainAxisAlignment.center,
                                               children: [
+                                                Text(
+                                                  book.title,
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Text(
+                                                  book.author,
+                                                  style: TextStyle(
+                                                      color: Colors.grey[600],
+                                                      fontSize: 12),
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                const SizedBox(height: 8),
                                                 Text(
                                                   'Rs ${book.price.toInt()}',
                                                   style: const TextStyle(
@@ -561,36 +540,251 @@ class _HomeViewState extends State<HomeView> {
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
                                                   ),
-                                                ),
-                                                const Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                      size: 16,
-                                                    ),
-                                                    SizedBox(width: 4),
-                                                    Text(
-                                                      '4.5', // Replace with actual rating
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  textAlign: TextAlign.center,
                                                 ),
                                               ],
                                             ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  // Badge at Top-Left
+                                  Positioned(
+                                    top: 8,
+                                    left: 8,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: Colors
+                                            .blue, // Matches the section’s blue theme
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Text(
+                                        '#${index + 1}', // #1, #2, #3, #4 based on index
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Deal of the Day Section (unchanged)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Deal of the Day',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..shader = const LinearGradient(
+                                  colors: [
+                                    Color(0xFF1E2751),
+                                    Color(0xFF2196F3)
+                                  ],
+                                ).createShader(
+                                    const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        if (state.isLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (state.error.isNotEmpty) {
+                          return Center(child: Text(state.error));
+                        } else {
+                          final discountedBooks = state.books
+                              .where((book) => book.hasDiscount)
+                              .toList();
+                          if (discountedBooks.isEmpty) {
+                            return const Center(
+                                child: Text(
+                                    'No discounted books available today'));
+                          }
+                          return SizedBox(
+                            height: 180,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: discountedBooks.length > 5
+                                  ? 5
+                                  : discountedBooks.length,
+                              itemBuilder: (context, index) {
+                                final book = discountedBooks[index];
+                                return Stack(
+                                  children: [
+                                    Container(
+                                      width: 320,
+                                      margin: const EdgeInsets.only(right: 20),
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Colors.white,
+                                            Colors.grey.shade50
                                           ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            spreadRadius: 1,
+                                            blurRadius: 8,
+                                            offset: const Offset(0, 4),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 120,
+                                            margin: const EdgeInsets.all(12),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.2),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 8,
+                                                  offset: const Offset(0, 4),
+                                                ),
+                                              ],
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              child: Image.network(
+                                                book.image,
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return Container(
+                                                    color: Colors.grey,
+                                                    child: const Center(
+                                                        child: Icon(Icons.error,
+                                                            color:
+                                                                Colors.white)),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    book.title,
+                                                    style: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  Text(
+                                                    book.author,
+                                                    style: TextStyle(
+                                                        color:
+                                                            Colors.grey[600]),
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'Rs ${(book.price * (1 - (book.discountPercent ?? 0) / 100)).toInt()}',
+                                                        style: const TextStyle(
+                                                          color: Colors.green,
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 8),
+                                                      Text(
+                                                        'Rs ${book.price.toInt()}',
+                                                        style: const TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 14,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 8,
+                                      right: 28,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 4),
+                                        decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 182, 39, 29),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Text(
+                                          '${book.discountPercent?.toInt() ?? 0}% OFF',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ],
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           );
                         }
                       },
