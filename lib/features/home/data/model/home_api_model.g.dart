@@ -13,7 +13,7 @@ HomeApiModel _$HomeApiModelFromJson(Map<String, dynamic> json) => HomeApiModel(
       title: json['title'] as String,
       price: (json['price'] as num).toDouble(),
       hasDiscount: json['hasDiscount'] as bool,
-      discountPercent: (json['discountPercent'] as num?)?.toDouble(),
+      discountPercent: (json['discount_percent'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$HomeApiModelToJson(HomeApiModel instance) =>
@@ -24,5 +24,5 @@ Map<String, dynamic> _$HomeApiModelToJson(HomeApiModel instance) =>
       'title': instance.title,
       'price': instance.price,
       'hasDiscount': instance.hasDiscount,
-      'discountPercent': instance.discountPercent,
+      'discount_percent': instance.discountPercent,
     };

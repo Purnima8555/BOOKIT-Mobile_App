@@ -7,24 +7,26 @@ class ApiEndpoints {
 
   // Base URLs for local development
   // static const String baseUrl = "http://10.0.2.2:3000/api/"; // Android Emulator
-  static const String baseUrl = "http://192.168.10.4:3000/api/";
+  static const String baseUrl = "http://192.168.153.215:3000/api/";
 
   // static const String baseUrl = "http://localhost:3000/api/v1/"; // iPhone Simulator
 
   // Image URL for uploads
-  static const String imageUrl = "http://192.168.10.4:3000/profilePicture/";
+  static const String imageUrl = "http://192.168.153.215:3000/profilePicture/";
   static const String uploadImage = "auth/uploadImage";
 
   // ====================== Auth Routes ======================
   static const String login = "auth/login";
   static const String register = "auth/register";
-  static const String getCurrentUser = "customer"; // Fetch logged-in user's profile
-  static const String getUserProfile = "auth/profile"; // Fetch logged-in user's profile
+  static const String getCurrentUser =
+      "customer"; // Fetch logged-in user's profile
+  static const String getUserProfile =
+      "auth/profile"; // Fetch logged-in user's profile
   static const String updateUser = "auth/updateUser/"; // Update user info
   static const String deleteUser = "auth/deleteUser/"; // Delete user account
 
   // ====================== Book Routes ======================
-  static const String bookImageUrl = "http://192.168.10.4:3000/book_images/";
+  static const String bookImageUrl = "http://192.168.153.215:3000/book_images/";
   static const String getAllBooks = "books/"; // Fetch all books
   static const String getNewBooks = "books/new/newbooks"; // Fetch new books
   static const String getBestBooks = "books/best/bestbooks"; // Fetch best books
@@ -48,12 +50,11 @@ class ApiEndpoints {
   static const String getAllPurchases =
       "purchase/all"; // Get all purchases (admin feature)
 
-  // ====================== Wishlist Routes ======================
-  static const String addToWishlist = "wishlist/add"; // Add book to wishlist
-  static const String removeFromWishlist =
-      "wishlist/remove/"; // Remove book (append bookId)
-  static const String getWishlist =
-      "wishlist/user/"; // Get user wishlist (append userId)
+  // ====================== Favorite Routes ======================
+  static const String addFavorite = "favorites/"; // POST to add a favorite
+  static const String getFavorites = "favorites/"; // GET with user_id appended
+  static const String removeFavorite =
+      "favorites/"; // DELETE with favorite _id appended
 
   // ====================== Review & Rating Routes ======================
   static const String addReview = "review/add"; // Add review for a book

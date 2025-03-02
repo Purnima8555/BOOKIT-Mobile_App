@@ -6,6 +6,7 @@ import 'package:bookit_flutter_project/features/auth/presentation/view_model/sig
 import 'package:bookit_flutter_project/features/auth/presentation/view_model/user/user_bloc.dart';
 import 'package:bookit_flutter_project/features/explore/presentation/view_model/explore_bloc.dart';
 import 'package:bookit_flutter_project/features/home/presentation/view_model/home_bloc.dart';
+import 'package:bookit_flutter_project/features/saved/presentation/view_model/saved_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,6 +33,9 @@ void main() async {
         BlocProvider<UserBloc>(
           create: (context) =>
               getIt<UserBloc>()..add(LoadUser()), // Provide UserBloc
+        ),
+        BlocProvider<SavedBloc>(
+          create: (context) => getIt<SavedBloc>(), // Provide SavedBloc
         ),
       ],
       child: const App(),

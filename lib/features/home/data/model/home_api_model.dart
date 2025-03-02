@@ -14,6 +14,7 @@ class HomeApiModel extends Equatable {
   final String title;
   final double price;
   final bool hasDiscount;
+  @JsonKey(name: 'discount_percent')
   final double? discountPercent;
 
   const HomeApiModel({

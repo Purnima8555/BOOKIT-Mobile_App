@@ -41,7 +41,7 @@ class DashboardView extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.bookmark),
-                  label: 'Saved',
+                  label: 'Bookmark',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.account_circle),
